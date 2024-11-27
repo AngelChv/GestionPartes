@@ -71,15 +71,13 @@ CREATE TABLE IF NOT EXISTS `gestionpartes`.`partes_incidencia` (
   `id_alum` INT NULL DEFAULT NULL,
   `id_parte` INT NOT NULL AUTO_INCREMENT,
   `id_profesor` INT NULL DEFAULT NULL,
-  `id_punt_partes` INT NULL DEFAULT NULL,
   `descripcion` VARCHAR(255) NULL DEFAULT NULL,
   `fecha` DATE NULL DEFAULT NULL,
   `hora` TIME NULL DEFAULT NULL,
   `sancion` VARCHAR(255) NULL DEFAULT NULL,
   PRIMARY KEY (`id_parte`),
   INDEX `FKqrx661g5lij25bl2plx6cb2pl` (`id_alum` ASC),
-  INDEX `FKniytl2x2lvm632ic1904a1bhb` (`id_profesor` ASC),
-  INDEX `FK75ruupml2w0bpugnsojl56g05` (`id_punt_partes` ASC))
+  INDEX `FKniytl2x2lvm632ic1904a1bhb` (`id_profesor` ASC))
 ENGINE = InnoDB
 AUTO_INCREMENT = 1
 DEFAULT CHARACTER SET = utf8mb4
