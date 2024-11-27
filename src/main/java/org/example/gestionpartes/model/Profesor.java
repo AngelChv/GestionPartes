@@ -3,6 +3,7 @@ package org.example.gestionpartes.model;
 import jakarta.persistence.*;
 
 @Entity
+@Table(name = "profesores")
 public class Profesor {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
