@@ -13,7 +13,8 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
-public class SceneManager {
+public class
+SceneManager {
     /**
      * Mapa para almacenar las ventanas abiertas, identificadas por el archivo FXML.
      */
