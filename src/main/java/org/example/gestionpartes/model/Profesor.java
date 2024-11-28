@@ -15,6 +15,7 @@ public class Profesor {
     String nombre;
     @Column(name = "numero_asignado")
     String numAsignado;
+    @Enumerated(EnumType.STRING) // sirve para indicar a hibernate que mapee los valores en lugar de indice numerico
     @Column(name = "tipo")
     TipoProfesor tipoProfesor;
 

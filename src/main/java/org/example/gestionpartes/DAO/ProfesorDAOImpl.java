@@ -8,9 +8,14 @@ import org.hibernate.SessionFactory;
 public class ProfesorDAOImpl implements ProfesorDAO {
 
     @Override
-    public Profesor getProfesor(int id) {
+    public Profesor getProfesor(String numAsig) {
         try (Session session = HibernateUtil.getSession()) {
-            return session.get(Profesor.class, id);
+            String hql = "from Profesor where numAsignado = :numAsig";
+            return session.createQuery(hql, Profesor.class)
+                    .setParameter("numAsig", numAsig)
+                    .uniqueResult();
+        }catch (Exception e) {
+            return null;
         }
     }
 }

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.gestionpartes.controller.ProfesorCtrl">
+   <children>
+      <HBox prefHeight="100.0" prefWidth="600.0">
+         <children>
+            <ImageView fitHeight="100.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../../../Downloads/LOGO_RIBERA%20DE%20CASTILLA/LOGO_RIBERA%20DE%20CASTILLA/LOGO_COLOR_PEQUEÑO.jpg" />
+               </image>
+            </ImageView>
+            <Button fx:id="buttonCrearParte" alignment="CENTER" mnemonicParsing="false" onAction="#clickCrearParte" text="Crear Parte">
+               <HBox.margin>
+                  <Insets right="20.0" top="40.0" />
+               </HBox.margin>
+            </Button>
+            <Button fx:id="buttonListaPartes" alignment="CENTER" mnemonicParsing="false" onAction="#clickListaPartes" text="Lista de Partes">
+               <HBox.margin>
+                  <Insets right="20.0" top="40.0" />
+               </HBox.margin>
+            </Button>
+            <Button fx:id="buttonListaAlumnos" alignment="CENTER" mnemonicParsing="false" onAction="#clickListaAlumnos" text="Lista de Alumnos">
+               <HBox.margin>
+                  <Insets right="20.0" top="40.0" />
+               </HBox.margin>
+            </Button>
+            <Button fx:id="buttonCrearProfesor" alignment="CENTER" mnemonicParsing="false" onAction="#clickCrearProfesor" text="Crear Profesor">
+               <HBox.margin>
+                  <Insets right="20.0" top="40.0" />
+               </HBox.margin>
+            </Button>
+         </children>
+      </HBox>
+   </children>
+</AnchorPane>
