@@ -10,7 +10,6 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
 <VBox alignment="CENTER" spacing="16.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.gestionpartes.controller.ListaAlumnosCtrl">
    <children>
                <fx:include source="menu-view.fxml" VBox.vgrow="NEVER" />
@@ -20,7 +19,7 @@
             <Font name="System Bold" size="18.0" />
          </font>
       </Label>
-      <TextField onInputMethodTextChanged="#onNumExpedienteChange" promptText=" Buscar por número de expediente" VBox.vgrow="ALWAYS">
+      <TextField fx:id="numExTxt" onKeyTyped="#onSearchType" promptText=" Buscar por número de expediente" VBox.vgrow="ALWAYS">
          <VBox.margin>
             <Insets />
          </VBox.margin>
