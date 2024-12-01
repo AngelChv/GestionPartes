@@ -2,8 +2,8 @@ package org.example.gestionpartes.DAO;
 
 import org.example.gestionpartes.model.Profesor;
 import org.example.gestionpartes.util.HibernateUtil;
+import org.hibernate.HibernateException;
 import org.hibernate.Session;
-import org.hibernate.SessionFactory;
 
 public class ProfesorDAOImpl implements ProfesorDAO {
 
@@ -14,8 +14,23 @@ public class ProfesorDAOImpl implements ProfesorDAO {
             return session.createQuery(hql, Profesor.class)
                     .setParameter("numAsig", numAsig)
                     .uniqueResult();
-        }catch (Exception e) {
+        }catch (HibernateException he) {
             return null;
         }
-    }
-}
+    }//getProfesor
+
+    @Override
+    public Boolean crearProfesor(Profesor profesor) {
+        boolean crearCoche = true;
+        try (Session session = HibernateUtil.getSession()) {
+            session.beginTransaction();
+            session.save(profesor);
+            session.getTransaction().commit();
+        }catch (HibernateException he) {
+        crearCoche = false;
+        }
+        return crearCoche;
+    }//crearProfesor
+
+
+}//ProfesorDAOImpl

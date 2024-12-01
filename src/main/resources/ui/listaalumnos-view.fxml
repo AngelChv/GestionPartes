@@ -10,7 +10,7 @@
             xmlns:fx="http://javafx.com/fxml"
             fx:controller="org.example.gestionpartes.controller.ListaAlumnosCtrl"
             prefHeight="400.0" prefWidth="600.0">
-            <fx:include source="profesor-view.fxml"/>
+            <fx:include source="menu-view.fxml"/>
     <Label layoutX="286.0" layoutY="200.0" text="Lista alumnos" />
 
 </AnchorPane>

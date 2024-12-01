@@ -21,8 +21,7 @@ public class Profesor {
 
     public Profesor() {}
 
-    public Profesor(int id, String password, String nombre, String numAsignado, TipoProfesor tipoProfesor) {
-        this.id = id;
+    public Profesor(String password, String nombre, String numAsignado, TipoProfesor tipoProfesor) {
         this.password = password;
         this.nombre = nombre;
         this.numAsignado = numAsignado;

@@ -4,7 +4,6 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
-import org.example.gestionpartes.GestionPartesApp;
 import org.example.gestionpartes.model.Profesor;
 import org.example.gestionpartes.model.TipoProfesor;
 import org.example.gestionpartes.service.GestionPartesService;
@@ -13,7 +12,7 @@ import org.example.gestionpartes.util.SceneManager;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class ProfesorCtrl {
+public class MenuCtrl implements Initializable {
 
     @FXML
     private Button buttonCrearParte;
@@ -26,6 +25,9 @@ public class ProfesorCtrl {
 
     @FXML
     private Button buttonListaPartes;
+
+    Profesor profesor = GestionPartesService.getProfesor();
+
 
 
     @FXML
@@ -50,5 +52,14 @@ public class ProfesorCtrl {
     void clickListaPartes(ActionEvent event) {
         SceneManager.changeScene(event, "listapartes-view.fxml");
 
+    }
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        if (profesor.getTipoProfesor() == TipoProfesor.PROFESOR){
+            buttonCrearProfesor.setDisable(true);
+            buttonListaAlumnos.setDisable(true);
+            buttonListaPartes.setDisable(true);
+        }
     }
 }
