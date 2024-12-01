@@ -26,7 +26,7 @@ public class MenuCtrl implements Initializable {
     @FXML
     private Button buttonListaPartes;
 
-    Profesor profesor = GestionPartesService.getProfesor();
+    private final Profesor profesor = GestionPartesService.getProfesor();
 
 
 
@@ -38,19 +38,19 @@ public class MenuCtrl implements Initializable {
 
     @FXML
     void clickCrearProfesor(ActionEvent event) {
-        SceneManager.changeScene(event, "crearprofesor-view.fxml");
+        SceneManager.changeScene(event, "crear_profesor-view.fxml");
 
     }
 
     @FXML
     void clickListaAlumnos(ActionEvent event) {
-        SceneManager.changeScene(event, "listaalumnos-view.fxml");
+        SceneManager.changeScene(event, "lista_alumnos-view.fxml");
 
     }
 
     @FXML
     void clickListaPartes(ActionEvent event) {
-        SceneManager.changeScene(event, "listapartes-view.fxml");
+        SceneManager.changeScene(event, "lista_partes-view.fxml");
 
     }
 

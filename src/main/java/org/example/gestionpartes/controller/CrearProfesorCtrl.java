@@ -36,8 +36,7 @@ public class CrearProfesorCtrl implements Initializable {
     @FXML
     private PasswordField txtPassword;
 
-    ProfesorDAOImpl profesorDAO = new ProfesorDAOImpl();
-
+    private final ProfesorDAOImpl profesorDAO = new ProfesorDAOImpl();
 
     @FXML
     void clickCrear(ActionEvent event) {
