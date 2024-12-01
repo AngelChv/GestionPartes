@@ -14,7 +14,7 @@ public class Grupo {
     @Column(name = "nombre_grupo")
     private String nombre;
 
-    @OneToMany(mappedBy = "Grupo", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "grupo", cascade = CascadeType.ALL)
     private List<Alumno> alumnos;
 
     public Grupo() {
