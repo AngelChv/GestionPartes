@@ -46,6 +46,10 @@ SceneManager {
         // Obtener la ventana (stage) del botón.
         Stage stage = (Stage) button.getScene().getWindow();
 
+        // Eliminar la escena actual del mapa:
+        openWindows.entrySet().removeIf(entry -> entry.getValue().getScene() == stage.getScene());
+
+        // Cargar la nueva escena:
         loadScene(fxml, stage, data);
     }
 
