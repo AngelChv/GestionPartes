@@ -26,7 +26,7 @@ public class MenuCtrl implements Initializable {
     @FXML
     private Button buttonListaPartes;
 
-    Profesor profesor = GestionPartesService.getProfesor();
+    private final Profesor profesor = GestionPartesService.getProfesor();
 
 
 

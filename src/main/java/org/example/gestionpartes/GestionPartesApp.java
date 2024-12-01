@@ -13,7 +13,7 @@ public class GestionPartesApp extends Application {
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(R.getUI("login-view.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
-        stage.setTitle("Hello!");
+        stage.setTitle("Gestión de Partes");
         stage.setScene(scene);
         stage.show();
     }
