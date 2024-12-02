@@ -8,11 +8,7 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 
-
 public class PartesCtrl {
-
-        @FXML
-        private ComboBox<?> HoraCb;
 
         @FXML
         private TextArea descripcionTxtArea;

@@ -11,7 +11,6 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-
 <AnchorPane prefHeight="825.0" prefWidth="1137.0" style="-fx-background-color: #9eff75;" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.PartesView">
    <children>
       <Text fx:id="tituloTxt" layoutX="386.0" layoutY="56.0" strokeType="OUTSIDE" strokeWidth="0.0" text="PARTE VERDE  DE ADVERTENCIA">
@@ -29,7 +28,7 @@
       <Text layoutX="47.0" layoutY="179.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Número de expediente del alumno:" wrappingWidth="191.376953125" />
       <Text layoutX="47.0" layoutY="261.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Profesor:" />
       <Text layoutX="47.0" layoutY="348.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Fecha:" />
-      <Text layoutX="47.0" layoutY="462.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Descripción de los hechos:">
+      <Text layoutX="47.0" layoutY="408.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Descripción de los hechos:">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
@@ -40,8 +39,14 @@
       <TextField fx:id="expedienteTxt" layoutX="279.0" layoutY="162.0" prefHeight="25.0" prefWidth="305.0" promptText=" Escribe el numero de expediente" />
       <ComboBox fx:id="profesorCb" layoutX="279.0" layoutY="244.0" prefHeight="25.0" prefWidth="305.0" promptText="Selecciona un profesor" />
       <DatePicker fx:id="fechaDP" layoutX="279.0" layoutY="331.0" prefHeight="25.0" prefWidth="305.0" promptText="dd/mm/aaaa" />
-      <TextArea fx:id="descripcionTxtArea" layoutX="47.0" layoutY="484.0" prefHeight="202.0" prefWidth="1025.0" />
-      <ComboBox fx:id="grupoCb" layoutX="771.0" layoutY="162.0" prefHeight="25.0" prefWidth="311.0" />
+      <TextArea fx:id="descripcionTxtArea" layoutX="47.0" layoutY="419.0" prefHeight="178.0" prefWidth="1025.0" />
+      <ComboBox fx:id="grupoCb" layoutX="771.0" layoutY="162.0" prefHeight="25.0" prefWidth="305.0" />
       <ChoiceBox layoutX="771.0" layoutY="331.0" prefHeight="25.0" prefWidth="58.0" />
+      <Text layoutX="48.0" layoutY="632.0" strokeType="OUTSIDE" strokeWidth="0.0" text="La sancion que recibes (a determinar por el profesor)">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Text>
+      <TextArea layoutX="47.0" layoutY="642.0" prefHeight="84.0" prefWidth="1025.0" />
    </children>
 </AnchorPane>
