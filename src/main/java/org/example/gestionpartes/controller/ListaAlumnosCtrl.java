@@ -19,7 +19,8 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 public class ListaAlumnosCtrl implements Initializable {
-    private static final int FILAS_POR_PAGINA = 3;
+    private static final int FILAS_POR_PAGINA = 5;
+
     @FXML
     private TextField numExTxt;
 
