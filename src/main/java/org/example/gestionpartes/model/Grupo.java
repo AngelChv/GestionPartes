@@ -3,6 +3,7 @@ package org.example.gestionpartes.model;
 import jakarta.persistence.*;
 
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "grupos")
@@ -15,7 +16,7 @@ public class Grupo {
     private String nombre;
 
     @OneToMany(mappedBy = "grupo", cascade = CascadeType.ALL)
-    private List<Alumno> alumnos;
+    private Set<Alumno> alumnos;
 
     public Grupo() {
     }

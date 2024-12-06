@@ -20,7 +20,9 @@
         <mapping class="org.example.gestionpartes.model.Profesor"/>
         <mapping class="org.example.gestionpartes.model.Grupo"/>
         <mapping class="org.example.gestionpartes.model.Alumno"/>
-        <mapping class="org.example.gestionpartes.model.Partes"/>
+        <mapping class="org.example.gestionpartes.model.Parte"/>
+        <mapping class="org.example.gestionpartes.model.ColorParte"/>
+        <mapping class="org.example.gestionpartes.model.TipoParte"/>
     </session-factory>
 </hibernate-configuration>
 
