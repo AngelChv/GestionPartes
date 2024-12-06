@@ -25,4 +25,71 @@ public class Parte {
     @ManyToOne
     @JoinColumn(name = "id_tipo_parte", referencedColumnName = "id_tipo")
     private TipoParte tipo;
+
+    public Parte() {
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public Alumno getAlumno() {
+        return alumno;
+    }
+
+    public void setAlumno(Alumno alumno) {
+        this.alumno = alumno;
+    }
+
+    public Profesor getProfesor() {
+        return profesor;
+    }
+
+    public void setProfesor(Profesor profesor) {
+        this.profesor = profesor;
+    }
+
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+    }
+
+    public LocalDate getFecha() {
+        return fecha;
+    }
+
+    public void setFecha(LocalDate fecha) {
+        this.fecha = fecha;
+    }
+
+    public LocalTime getHora() {
+        return hora;
+    }
+
+    public void setHora(LocalTime hora) {
+        this.hora = hora;
+    }
+
+    public String getSancion() {
+        return sancion;
+    }
+
+    public void setSancion(String sancion) {
+        this.sancion = sancion;
+    }
+
+    public TipoParte getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(TipoParte tipo) {
+        this.tipo = tipo;
+    }
 }
