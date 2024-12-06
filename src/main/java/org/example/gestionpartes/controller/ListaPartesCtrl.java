@@ -6,12 +6,10 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Pagination;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.input.KeyEvent;
 import org.example.gestionpartes.DAO.ParteDAOImpl;
+import org.example.gestionpartes.model.ColorParte;
 import org.example.gestionpartes.model.Parte;
 
 import java.net.URL;
@@ -71,6 +69,23 @@ public class ListaPartesCtrl implements Initializable {
         partes = parteDAO.findAll();
         partesObsL = FXCollections.observableArrayList(partes);
         partesTbl.setItems(partesObsL);
+
+
+        partesTbl.setRowFactory(_ -> new TableRow<>() {
+            protected void updateItem(Parte parte, boolean empty) {
+                super.updateItem(parte, empty);
+                if (empty || parte == null) {
+                    setStyle(""); // Si la fila está vacía no se aplica estilo.
+                } else {
+                    switch (parte.getTipo().getColor()) {
+                        case ColorParte.VERDE -> setStyle("-fx-background-color: #9af69f;");
+                        case ColorParte.NARANJA -> setStyle("-fx-background-color: #faac46;");
+                        case ColorParte.ROJO -> setStyle("-fx-background-color: #d06f6f;");
+                        default -> setStyle("");
+                    }
+                }
+            }
+        });
 
         initializePagination();
     }

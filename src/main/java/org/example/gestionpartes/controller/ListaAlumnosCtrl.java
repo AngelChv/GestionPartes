@@ -5,10 +5,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Pagination;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyEvent;
 import org.example.gestionpartes.DAO.AlumnoDAOImpl;
@@ -57,6 +54,25 @@ public class ListaAlumnosCtrl implements Initializable {
         alumnos = alumnoDAO.findAll();
         alumnosObsL = FXCollections.observableArrayList(alumnos);
         alumnosTbl.setItems(alumnosObsL);
+
+        alumnosTbl.setRowFactory(_ -> new TableRow<>() {
+            protected void updateItem(Alumno alumno, boolean empty) {
+                super.updateItem(alumno, empty);
+                if (empty || alumno == null) {
+                    setStyle(""); // Si la fila está vacía no se aplica estilo.
+                } else {
+                    if (alumno.getPuntos() > 0 && alumno.getPuntos() <= 5) {
+                        setStyle("-fx-background-color: #9af69f;");
+                    } else if (alumno.getPuntos() >= 6 && alumno.getPuntos() <= 11) {
+                        setStyle("-fx-background-color: #faac46;");
+                    } else if (alumno.getPuntos() >= 12) {
+                        setStyle("-fx-background-color: #d06f6f;");
+                    } else {
+                        setStyle("-fx-background-color: #ffffff;");
+                    }
+                }
+            }
+        });
 
         initializePagination();
     }
