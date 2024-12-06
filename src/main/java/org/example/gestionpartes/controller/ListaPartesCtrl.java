@@ -115,7 +115,21 @@ public class ListaPartesCtrl implements Initializable {
 
     @FXML
     void onSearchType(KeyEvent event) {
+        String searchText = numExTxt.getText().toLowerCase();
 
+        // Filtrar los alumnos originales según el texto de búsqueda
+        List<Parte> partesFiltrados = partes.stream().filter(parte -> (
+                parte.getAlumno().getNombre().toLowerCase().contains(searchText) ||
+                        parte.getAlumno().getGrupo().getNombre().toLowerCase().contains(searchText) ||
+                        parte.getProfesor().getNombre().toLowerCase().contains(searchText) ||
+                        parte.getTipo().getColor().toString().toLowerCase().contains(searchText) ||
+                        String.valueOf(parte.getAlumno().getNumExpediente()).contains(searchText)
+        )).toList();
+
+        partesObsL.setAll(partesFiltrados);
+
+        // Actualizar la paginación para reflejar el número de elementos filtrados
+        initializePagination();
     }
 
 }
