@@ -2,6 +2,8 @@ package org.example.gestionpartes.model;
 
 import jakarta.persistence.*;
 
+import java.util.Set;
+
 @Entity
 @Table(name = "alumnos")
 public class Alumno {
@@ -18,6 +20,8 @@ public class Alumno {
     private String nombre;
     @Column(name = "numero_expediente")
     private int numExpediente;
+    @OneToMany(mappedBy = "alumno", cascade = CascadeType.ALL)
+    private Set<Parte> partes;
 
     public Alumno() {
     }

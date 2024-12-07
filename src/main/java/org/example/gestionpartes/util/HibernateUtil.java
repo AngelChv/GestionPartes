@@ -29,7 +29,7 @@ public class HibernateUtil {
                 factory = cfg.buildSessionFactory();
                 System.out.println("Fábrica de sesiones creada.");
             } catch (HibernateException e) {
-                System.err.println("Error al crear la fábrica de sesiones: " + e.getMessage());
+                AlertShow.error("Error al crear la fábrica de sesiones: \n" + e.getMessage());
             }
         }
         return factory;
@@ -41,7 +41,7 @@ public class HibernateUtil {
      * @return {@link Session}
      */
     public static Session getSession() {
-        return getSessionFactory().openSession();
+            return getSessionFactory().openSession();
     }
 
     public static void closeSessionFactory() {
@@ -50,7 +50,7 @@ public class HibernateUtil {
                 factory.close();
                 System.out.println("Fábrica de sesiones cerrada.");
             } catch (HibernateException e) {
-                System.err.println("Error al cerrar la fábrica de sesiones: " + e.getMessage());
+                AlertShow.error("Error al cerrar la fábrica de sesiones: \n" + e.getMessage());
             } finally {
                 factory = null;
             }

@@ -24,12 +24,12 @@
             <Insets />
          </VBox.margin>
       </TextField>
-      <TableView fx:id="alumnosTbl" minWidth="600.0" VBox.vgrow="ALWAYS">
+      <TableView fx:id="alumnosTbl" VBox.vgrow="ALWAYS">
         <columns>
-          <TableColumn fx:id="numExClmn" maxWidth="1.7976931348623157E308" prefWidth="-1.0" text="Número de Expediente" />
-          <TableColumn fx:id="nombreClmn" maxWidth="1.7976931348623157E308" prefWidth="-1.0" text="Nombre" />
-            <TableColumn fx:id="groupClmn" maxWidth="1.7976931348623157E308" prefWidth="-1.0" text="Grupo" />
-            <TableColumn fx:id="puntosClmn" maxWidth="1.7976931348623157E308" prefWidth="-1.0" text="Puntos" />
+          <TableColumn fx:id="numExClmn" maxWidth="1.7976931348623157E308" prefWidth="20.0" text="Nº Expediente" />
+          <TableColumn fx:id="nombreClmn" maxWidth="1.7976931348623157E308" prefWidth="20.0" text="Nombre" />
+            <TableColumn fx:id="groupClmn" maxWidth="1.7976931348623157E308" prefWidth="20.0" text="Grupo" />
+            <TableColumn fx:id="puntosClmn" maxWidth="1.7976931348623157E308" prefWidth="20.0" text="Puntos" />
         </columns>
          <VBox.margin>
             <Insets />
@@ -38,7 +38,7 @@
             <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
          </columnResizePolicy>
       </TableView>
-      <Pagination fx:id="pagination" pageCount="2" />
+      <Pagination fx:id="pagination" pageCount="2" VBox.vgrow="ALWAYS" />
    </children>
    <padding>
       <Insets bottom="16.0" left="16.0" right="16.0" top="16.0" />
