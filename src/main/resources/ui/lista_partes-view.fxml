@@ -29,8 +29,8 @@
         </TextField>
       <HBox alignment="CENTER" spacing="8.0">
          <children>
-            <DatePicker promptText="startDatePick" />
-            <DatePicker promptText="endDatePick" />
+            <DatePicker fx:id="startDatePick" promptText="Fecha inicio" />
+            <DatePicker fx:id="endDatePick" promptText="Fecha fin" />
             <Button mnemonicParsing="false" onAction="#onSearchByDateClick" text="Buscar por fecha" />
          </children>
       </HBox>

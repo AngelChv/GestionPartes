@@ -20,6 +20,12 @@ public class ListaPartesCtrl implements Initializable {
     private static final int FILAS_POR_PAGINA = 5;
 
     @FXML
+    private DatePicker startDatePick;
+
+    @FXML
+    private DatePicker endDatePick;
+
+    @FXML
     private TableColumn<Parte, String> fechaClmn;
 
     @FXML
@@ -110,14 +116,23 @@ public class ListaPartesCtrl implements Initializable {
 
     @FXML
     void onSearchByDateClick(ActionEvent event) {
+        // Filtrar los partes originales según las fechas introducidas.
+        List<Parte> partesFiltrados = partes.stream().filter(parte -> (
+                parte.getFecha().isAfter(startDatePick.getValue()) &&
+                        parte.getFecha().isBefore(endDatePick.getValue())
+        )).toList();
 
+        partesObsL.setAll(partesFiltrados);
+
+        // Actualizar la paginación para reflejar el número de elementos filtrados
+        initializePagination();
     }
 
     @FXML
     void onSearchType(KeyEvent event) {
         String searchText = numExTxt.getText().toLowerCase();
 
-        // Filtrar los alumnos originales según el texto de búsqueda
+        // Filtrar los partes originales según el texto de búsqueda
         List<Parte> partesFiltrados = partes.stream().filter(parte -> (
                 parte.getAlumno().getNombre().toLowerCase().contains(searchText) ||
                         parte.getAlumno().getGrupo().getNombre().toLowerCase().contains(searchText) ||
