@@ -13,6 +13,7 @@ import org.example.gestionpartes.model.ColorParte;
 import org.example.gestionpartes.model.Parte;
 
 import java.net.URL;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -38,7 +39,7 @@ public class ListaPartesCtrl implements Initializable {
     private TableColumn<Parte, String> numExClmn;
 
     @FXML
-    private TextField numExTxt;
+    private TextField filterTxt;
 
     @FXML
     private Pagination pagination;
@@ -96,6 +97,44 @@ public class ListaPartesCtrl implements Initializable {
         initializePagination();
     }
 
+    @FXML
+    void onClearFiltersClick(ActionEvent event) {
+        filterTxt.clear();
+        startDatePick.setValue(null);
+        endDatePick.setValue(null);
+        partesObsL.setAll(partes);
+        initializePagination();
+    }
+
+
+    @FXML
+    void onStartDateClick(ActionEvent event) {
+        dateFilter();
+    }
+
+    @FXML
+    void onEndDateClick(ActionEvent event) {
+        dateFilter();
+    }
+
+    @FXML
+    void onSearchType(KeyEvent event) {
+        String searchText = filterTxt.getText().toLowerCase();
+
+        // Filtrar los partes originales según el texto de búsqueda
+        List<Parte> partesFiltrados = partes.stream().filter(parte -> (
+                parte.getAlumno().getNombre().toLowerCase().contains(searchText) ||
+                        parte.getAlumno().getGrupo().getNombre().toLowerCase().contains(searchText) ||
+                        parte.getProfesor().getNombre().toLowerCase().contains(searchText) ||
+                        parte.getTipo().getColor().toString().toLowerCase().contains(searchText) ||
+                        String.valueOf(parte.getAlumno().getNumExpediente()).contains(searchText)
+        )).toList();
+
+        partesObsL.setAll(partesFiltrados);
+
+        // Actualizar la paginación para reflejar el número de elementos filtrados
+        initializePagination();
+    }
 
     private void initializePagination() {
         // Redondear hacia arriba el número de páginas, para que entren todos los alumnos.
@@ -114,37 +153,21 @@ public class ListaPartesCtrl implements Initializable {
         });
     }
 
-    @FXML
-    void onSearchByDateClick(ActionEvent event) {
-        // Filtrar los partes originales según las fechas introducidas.
-        List<Parte> partesFiltrados = partes.stream().filter(parte -> (
-                parte.getFecha().isAfter(startDatePick.getValue()) &&
-                        parte.getFecha().isBefore(endDatePick.getValue())
-        )).toList();
+    private void dateFilter() {
+        LocalDate startDate = startDatePick.getValue();
+        LocalDate endDate = endDatePick.getValue();
 
-        partesObsL.setAll(partesFiltrados);
+        if (startDate != null && endDate != null) {
+            // Filtrar los partes originales según las fechas introducidas.
+            List<Parte> partesFiltrados = partes.stream().filter(parte -> (
+                    parte.getFecha().isAfter(startDatePick.getValue()) &&
+                            parte.getFecha().isBefore(endDatePick.getValue())
+            )).toList();
 
-        // Actualizar la paginación para reflejar el número de elementos filtrados
-        initializePagination();
+            partesObsL.setAll(partesFiltrados);
+
+            // Actualizar la paginación para reflejar el número de elementos filtrados
+            initializePagination();
+        }
     }
-
-    @FXML
-    void onSearchType(KeyEvent event) {
-        String searchText = numExTxt.getText().toLowerCase();
-
-        // Filtrar los partes originales según el texto de búsqueda
-        List<Parte> partesFiltrados = partes.stream().filter(parte -> (
-                parte.getAlumno().getNombre().toLowerCase().contains(searchText) ||
-                        parte.getAlumno().getGrupo().getNombre().toLowerCase().contains(searchText) ||
-                        parte.getProfesor().getNombre().toLowerCase().contains(searchText) ||
-                        parte.getTipo().getColor().toString().toLowerCase().contains(searchText) ||
-                        String.valueOf(parte.getAlumno().getNumExpediente()).contains(searchText)
-        )).toList();
-
-        partesObsL.setAll(partesFiltrados);
-
-        // Actualizar la paginación para reflejar el número de elementos filtrados
-        initializePagination();
-    }
-
 }

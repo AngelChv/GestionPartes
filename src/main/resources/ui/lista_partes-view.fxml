@@ -17,21 +17,21 @@
     <children>
         <fx:include source="menu-view.fxml" VBox.vgrow="NEVER" />
         <Separator prefWidth="200.0" />
-        <Label text="Lista de Alumnos">
+        <Label text="Lista de Partes">
             <font>
                 <Font name="System Bold" size="18.0" />
             </font>
         </Label>
-        <TextField fx:id="numExTxt" onKeyTyped="#onSearchType" promptText=" Buscar por número de expediente" VBox.vgrow="ALWAYS">
+        <TextField fx:id="filterTxt" onKeyTyped="#onSearchType" promptText=" Buscar por número de expediente" VBox.vgrow="ALWAYS">
             <VBox.margin>
                 <Insets />
             </VBox.margin>
         </TextField>
       <HBox alignment="CENTER" spacing="8.0">
          <children>
-            <DatePicker fx:id="startDatePick" promptText="Fecha inicio" />
-            <DatePicker fx:id="endDatePick" promptText="Fecha fin" />
-            <Button mnemonicParsing="false" onAction="#onSearchByDateClick" text="Buscar por fecha" />
+            <DatePicker fx:id="startDatePick" onAction="#onStartDateClick" promptText="Fecha inicio" />
+            <DatePicker fx:id="endDatePick" onAction="#onEndDateClick" promptText="Fecha fin" />
+            <Button mnemonicParsing="false" onAction="#onClearFiltersClick" text="Limpiar filtros" />
          </children>
       </HBox>
         <TableView fx:id="partesTbl" VBox.vgrow="ALWAYS">
