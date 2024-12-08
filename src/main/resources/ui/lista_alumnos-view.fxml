@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Pagination?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox alignment="CENTER" spacing="16.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.gestionpartes.controller.ListaAlumnosCtrl">
+   <children>
+               <fx:include source="menu-view.fxml" VBox.vgrow="NEVER" />
+      <Separator prefWidth="200.0" />
+      <Label text="Lista de Alumnos">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Label>
+      <TextField fx:id="numExTxt" onKeyTyped="#onSearchType" promptText=" Buscar por número de expediente" VBox.vgrow="ALWAYS">
+         <VBox.margin>
+            <Insets />
+         </VBox.margin>
+      </TextField>
+      <TableView fx:id="alumnosTbl" VBox.vgrow="ALWAYS">
+        <columns>
+          <TableColumn fx:id="numExClmn" maxWidth="1.7976931348623157E308" prefWidth="20.0" text="Nº Expediente" />
+          <TableColumn fx:id="nombreClmn" maxWidth="1.7976931348623157E308" prefWidth="20.0" text="Nombre" />
+            <TableColumn fx:id="groupClmn" maxWidth="1.7976931348623157E308" prefWidth="20.0" text="Grupo" />
+            <TableColumn fx:id="puntosClmn" maxWidth="1.7976931348623157E308" prefWidth="20.0" text="Puntos" />
+        </columns>
+         <VBox.margin>
+            <Insets />
+         </VBox.margin>
+         <columnResizePolicy>
+            <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+         </columnResizePolicy>
+      </TableView>
+      <Pagination fx:id="pagination" pageCount="2" VBox.vgrow="ALWAYS" />
+   </children>
+   <padding>
+      <Insets bottom="16.0" left="16.0" right="16.0" top="16.0" />
+   </padding>
+</VBox>

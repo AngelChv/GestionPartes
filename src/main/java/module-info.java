@@ -8,6 +8,7 @@ module org.example.gestionpartes {
     requires jakarta.persistence;
     requires java.naming;
     requires mysql.connector.j;
+    requires org.apache.commons.codec;
 
     opens ui;
     opens configuration;
