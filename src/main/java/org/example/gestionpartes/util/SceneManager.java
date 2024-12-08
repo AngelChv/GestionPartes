@@ -1,5 +1,6 @@
 package org.example.gestionpartes.util;
 
+import javafx.scene.Node;
 import org.example.gestionpartes.model.LoadAbleData;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
@@ -40,11 +41,11 @@ SceneManager {
      * @param data  Objeto que es pasado al controlador mediante el método de la interfaz {@link LoadAbleData}.
      */
     public static <T> void changeScene(ActionEvent event, String fxml, T data) {
-        // Obtener el botón que generó el evento.
-        Button button = (Button) event.getSource();
+        // Obtener el nodo (elemento) que generó el evento.
+        Node node = (Node) event.getSource();
 
-        // Obtener la ventana (stage) del botón.
-        Stage stage = (Stage) button.getScene().getWindow();
+        // Obtener la ventana (stage) del nodo.
+        Stage stage = (Stage) node.getScene().getWindow();
 
         // Eliminar la escena actual del mapa:
         openWindows.entrySet().removeIf(entry -> entry.getValue().getScene() == stage.getScene());
