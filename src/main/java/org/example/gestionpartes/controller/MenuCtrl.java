@@ -32,7 +32,7 @@ public class MenuCtrl implements Initializable {
 
     @FXML
     void clickCrearParte(ActionEvent event) {
-        SceneManager.changeScene(event, "crearparte-view.fxml");
+        SceneManager.changeScene(event, "crear_parte-view.fxml");
 
     }
 
