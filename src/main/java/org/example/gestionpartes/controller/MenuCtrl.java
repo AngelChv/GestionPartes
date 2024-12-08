@@ -3,10 +3,15 @@ package org.example.gestionpartes.controller;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.MenuButton;
+import javafx.scene.control.MenuItem;
 import org.example.gestionpartes.model.Profesor;
 import org.example.gestionpartes.model.TipoProfesor;
 import org.example.gestionpartes.service.GestionPartesService;
+import org.example.gestionpartes.util.AlertShow;
 import org.example.gestionpartes.util.SceneManager;
 
 import java.net.URL;
@@ -26,9 +31,23 @@ public class MenuCtrl implements Initializable {
     @FXML
     private Button buttonListaPartes;
 
+    @FXML
+    private Label userLabel;
+
+    @FXML
+    private MenuButton userMenuBttn;
+
     private final Profesor profesor = GestionPartesService.getProfesor();
 
-
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        userLabel.setText(GestionPartesService.getProfesor().getNombre());
+        if (profesor.getTipoProfesor() == TipoProfesor.PROFESOR){
+            buttonCrearProfesor.setDisable(true);
+            buttonListaAlumnos.setDisable(true);
+            buttonListaPartes.setDisable(true);
+        }
+    }//initialize
 
     @FXML
     void clickCrearParte(ActionEvent event) {
@@ -54,12 +73,10 @@ public class MenuCtrl implements Initializable {
 
     }
 
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-        if (profesor.getTipoProfesor() == TipoProfesor.PROFESOR){
-            buttonCrearProfesor.setDisable(true);
-            buttonListaAlumnos.setDisable(true);
-            buttonListaPartes.setDisable(true);
-        }
+    @FXML
+    void onCloseSessionClick(ActionEvent event) {
+        AlertShow.confirmation("¿Desea cerrar la sesión?");
+        SceneManager.changeScene(event, "login-view.fxml");
+
     }
 }
