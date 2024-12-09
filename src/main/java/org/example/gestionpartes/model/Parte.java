@@ -29,6 +29,16 @@ public class Parte {
     public Parte() {
     }
 
+    public Parte(Alumno alumno, Profesor profesor, String descripcion, LocalDate fecha, LocalTime hora, String sancion, TipoParte tipo) {
+        this.alumno = alumno;
+        this.profesor = profesor;
+        this.descripcion = descripcion;
+        this.fecha = fecha;
+        this.hora = hora;
+        this.sancion = sancion;
+        this.tipo = tipo;
+    }
+
     public int getId() {
         return id;
     }

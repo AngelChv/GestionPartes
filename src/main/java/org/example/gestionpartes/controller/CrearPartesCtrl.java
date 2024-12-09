@@ -5,11 +5,21 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.layout.VBox;
+import org.example.gestionpartes.DAO.AlumnoDAO;
+import org.example.gestionpartes.DAO.AlumnoDAOImpl;
+import org.example.gestionpartes.model.Alumno;
 import org.example.gestionpartes.model.ColorParte;
+import org.example.gestionpartes.model.Parte;
+import org.example.gestionpartes.model.TipoParte;
+import org.example.gestionpartes.service.GestionPartesService;
 import org.example.gestionpartes.util.AlertShow;
+import org.example.gestionpartes.util.Validator;
 
 import java.net.URL;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ResourceBundle;
+import java.util.Set;
 
 public class CrearPartesCtrl implements Initializable {
     @FXML
@@ -37,6 +47,10 @@ public class CrearPartesCtrl implements Initializable {
     private TextArea sancionTxt;
 
     private ColorParte color;
+
+    private final static AlumnoDAOImpl alumnoDAO = new AlumnoDAOImpl();
+
+    //private final static Set<TipoParte> tiposParte = new ;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -77,11 +91,27 @@ public class CrearPartesCtrl implements Initializable {
 
     @FXML
     void onSaveClick(ActionEvent event) {
+        //Obtener los valores de los campos
+        String numExpediente=numexpedienteTxt.getText();
+        LocalDate fecha=datePick.getValue();
+        String descripcion=descripcionTxt.getText();
+        String sancion=sancionTxt.getText();
         String hora = horaComboBox.getSelectionModel().getSelectedItem();
         String minuto = minutoComboBox.getSelectionModel().getSelectedItem();
-        if (numexpedienteTxt.getText().isEmpty() || datePick==null || hora==null || minuto==null
-            || descripcionTxt.getText().isEmpty() || sancionTxt.getText().isEmpty()){
+
+        if (numExpediente.isEmpty() || fecha==null || hora==null || minuto==null
+            || descripcion.isEmpty() || sancion.isEmpty()){
             AlertShow.warning("Por favor. Rellene todos los campos.");
+        } else if (!Validator.validarNumExp(numExpediente)){
+            AlertShow.warning("Introduzca un numero de expediente correcto.");
+        } else { //Todos los campos completados y el numero de expediente es valido.
+            Alumno alumno = alumnoDAO.findByNumExp(Integer.parseInt(numExpediente));
+            if (alumno==null){
+                AlertShow.warning("No existe un alumno con número de expediente: "+numExpediente);
+            } else {
+                LocalTime time = LocalTime.of(Integer.parseInt(hora), Integer.parseInt(minuto));
+              //  Parte parte = new Parte(alumno, GestionPartesService.getProfesor(),descripcion,fecha,time,sancion, color);
+            }
         }
     }
 
