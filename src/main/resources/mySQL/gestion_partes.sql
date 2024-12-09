@@ -78,7 +78,7 @@ DROP TABLE IF EXISTS `gestionpartes`.`tipos_parte`;
 CREATE TABLE IF NOT EXISTS `gestionpartes`.`tipos_parte`
 (
     `id_tipo` INT PRIMARY KEY AUTO_INCREMENT,
-    `color`   ENUM ('VERDE', 'NARANJA', 'ROJO'),
+    `color`   ENUM ('VERDE', 'NARANJA', 'ROJO') UNIQUE,
     `puntos`  INT NOT NULL
 ) ENGINE = InnoDB
   AUTO_INCREMENT = 1
