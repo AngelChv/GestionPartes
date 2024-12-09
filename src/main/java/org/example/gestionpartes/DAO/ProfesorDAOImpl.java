@@ -21,15 +21,15 @@ public class ProfesorDAOImpl implements ProfesorDAO {
 
     @Override
     public Boolean crearProfesor(Profesor profesor) {
-        boolean crearCoche = true;
+        boolean crearProfesor = true;
         try (Session session = HibernateUtil.getSession()) {
             session.beginTransaction();
-            session.save(profesor);
+            session.persist(profesor);
             session.getTransaction().commit();
         }catch (HibernateException he) {
-        crearCoche = false;
+            crearProfesor = false;
         }
-        return crearCoche;
+        return crearProfesor;
     }//crearProfesor
 
 
