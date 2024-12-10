@@ -45,6 +45,12 @@ public class CrearPartesCtrl implements Initializable {
     @FXML
     private TextArea sancionTxt;
 
+    @FXML
+    private ComboBox<String> opcionesParteRojo;
+
+    @FXML
+    private Label sancionRojoLabel;
+
     private ColorParte color;
 
     private final static AlumnoDAOImpl alumnoDAO = new AlumnoDAOImpl();
@@ -78,17 +84,26 @@ public class CrearPartesCtrl implements Initializable {
     }
 
     @FXML
-    void onNaranjaClick(ActionEvent event) {
-        vBox.setStyle("-fx-background-color: #faac46;");
-        titleLabel.setText("Parte naranja de nota negativa");
-        color = ColorParte.NARANJA;
-    }
-
-    @FXML
     void onRojoClick(ActionEvent event) {
         vBox.setStyle("-fx-background-color: #d06f6f;");
         titleLabel.setText("Parte rojo de nota negativa");
         color = ColorParte.ROJO;
+
+        //Cambiar TextArea por comboBox
+//        sancionTxt.setVisible(false);
+//        sancionRojoLabel.setVisible(true);
+//        opcionesParteRojo.setVisible(true);
+    }
+
+    @FXML
+    void onNaranjaClick(ActionEvent event) {
+        vBox.setStyle("-fx-background-color: #faac46;");
+        titleLabel.setText("Parte naranja de nota negativa");
+        color = ColorParte.NARANJA;
+
+        //Volver a mostrar el TextArea
+//        sancionTxt.setVisible(true);
+//        opcionesParteRojo.setVisible(false);
     }
 
     @FXML
@@ -96,6 +111,10 @@ public class CrearPartesCtrl implements Initializable {
         vBox.setStyle("-fx-background-color: #9af69f;");
         titleLabel.setText("Parte verde de advertencia");
         color = ColorParte.VERDE;
+
+        //Volver a mostrar el TextArea
+//        sancionTxt.setVisible(true);
+//        opcionesParteRojo.setVisible(false);
     }
 
     @FXML
@@ -107,6 +126,16 @@ public class CrearPartesCtrl implements Initializable {
         String sancion = sancionTxt.getText();
         String hora = horaComboBox.getSelectionModel().getSelectedItem();
         String minuto = minutoComboBox.getSelectionModel().getSelectedItem();
+
+        //Saber si hay que coger la info del comboBox o del textArea
+//        if (opcionesParteRojo.isVisible()){
+//            sancion=opcionesParteRojo.getSelectionModel().getSelectedItem();
+//            if (sancion==null){
+//                AlertShow.warning("Seleccione una opcion.");
+//            }
+//        } else {
+//            sancion=sancionTxt.getText();
+//        }
 
         if (numExpediente.isEmpty() || fecha == null || hora == null || minuto == null
                 || descripcion.isEmpty() || sancion.isEmpty()) {
