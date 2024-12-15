@@ -11,6 +11,8 @@ import javafx.scene.input.KeyEvent;
 import org.example.gestionpartes.DAO.ParteDAOImpl;
 import org.example.gestionpartes.model.ColorParte;
 import org.example.gestionpartes.model.Parte;
+import org.example.gestionpartes.util.AlertShow;
+import org.example.gestionpartes.util.SceneManager;
 
 import java.net.URL;
 import java.time.LocalDate;
@@ -134,6 +136,17 @@ public class ListaPartesCtrl implements Initializable {
 
         // Actualizar la paginación para reflejar el número de elementos filtrados
         initializePagination();
+    }
+
+    @FXML
+    void onEditClick(ActionEvent event) {
+        Parte parte = partesTbl.getSelectionModel().getSelectedItem();
+
+        if (parte == null) {
+            AlertShow.warning("Selecciona un parte.");
+        } else {
+            SceneManager.changeScene(event, "crear_parte-view.fxml", parte);
+        }
     }
 
     private void initializePagination() {

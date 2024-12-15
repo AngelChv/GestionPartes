@@ -8,4 +8,5 @@ import java.util.List;
 public interface ParteDAO {
     List<Parte> findAll();
     Boolean crear(Parte parte);
+    Boolean editar(Parte parte);
 }
