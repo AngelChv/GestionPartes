@@ -5,15 +5,14 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 import org.example.gestionpartes.DAO.*;
-import org.example.gestionpartes.model.Alumno;
-import org.example.gestionpartes.model.ColorParte;
-import org.example.gestionpartes.model.Parte;
-import org.example.gestionpartes.model.TipoParte;
+import org.example.gestionpartes.model.*;
 import org.example.gestionpartes.service.GestionPartesService;
 import org.example.gestionpartes.util.AlertShow;
+import org.example.gestionpartes.util.SceneManager;
 import org.example.gestionpartes.util.Validator;
 
 import java.net.URL;
@@ -21,7 +20,10 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.*;
 
-public class CrearPartesCtrl implements Initializable {
+public class CrearPartesCtrl implements Initializable, LoadAbleData<Parte> {
+    @FXML
+    public HBox menuInclude;
+
     @FXML
     private VBox vBox;
 
@@ -61,6 +63,8 @@ public class CrearPartesCtrl implements Initializable {
     private final static ParteDAOImpl parteDAO = new ParteDAOImpl();
 
     private static final Map<ColorParte, TipoParte> tiposParteMap = new HashMap<>();
+
+    private Parte oldParte = null;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -107,8 +111,39 @@ public class CrearPartesCtrl implements Initializable {
         });
     }
 
+    @Override
+    public void loadData(Parte parte) {
+        vBox.getChildren().remove(menuInclude);
+        guardarBttn.setText("Editar");
+        oldParte = parte;
+        switch (parte.getTipo().getColor()) {
+            case VERDE -> sancionTxt.setText(parte.getSancion());
+            case NARANJA -> {
+                onNaranjaClick();
+                sancionTxt.setText(parte.getSancion());
+            }
+            case ROJO -> {
+                onRojoClick();
+                System.out.println(parte.getSancion());
+                System.out.println(tipoSancionCBox.getItems().contains(parte.getSancion()));
+                if (tipoSancionCBox.getItems().contains(parte.getSancion())) {
+                    tipoSancionCBox.setValue(parte.getSancion());
+                } else {
+                    tipoSancionCBox.setValue("Otra");
+                    sancionTxt.setText(parte.getSancion());
+                }
+            }
+        }
+
+        numexpedienteTxt.setText(String.valueOf(parte.getAlumno().getNumExpediente()));
+        datePick.setValue(parte.getFecha());
+        horaComboBox.setValue(String.format("%02d", parte.getHora().getHour()));
+        minutoComboBox.setValue(String.format("%02d", parte.getHora().getMinute()));
+        descripcionTxt.setText(parte.getDescripcion());
+    }
+
     @FXML
-    void onRojoClick(ActionEvent event) {
+    void onRojoClick() {
         // Cambiar color de fondo
         vBox.setStyle("-fx-background-color: #d06f6f;");
         titleLabel.setText("Parte rojo de nota negativa");
@@ -124,7 +159,7 @@ public class CrearPartesCtrl implements Initializable {
     }
 
     @FXML
-    void onNaranjaClick(ActionEvent event) {
+    void onNaranjaClick() {
         // Cambiar color de fondo
         vBox.setStyle("-fx-background-color: #faac46;");
         titleLabel.setText("Parte naranja de nota negativa");
@@ -157,6 +192,10 @@ public class CrearPartesCtrl implements Initializable {
             vBox.getChildren().add(vBox.getChildren().indexOf(guardarBttn), sancionTxt);
             VBox.setVgrow(sancionTxt, Priority.ALWAYS);
         }
+    }
+
+    private void addSancion() {
+
     }
 
 
@@ -192,7 +231,12 @@ public class CrearPartesCtrl implements Initializable {
             } else {
                 LocalTime time = LocalTime.of(Integer.parseInt(hora), Integer.parseInt(minuto));
 
-                Parte parte = new Parte(
+                // Aplicar sanción adecuada en caso de seleccionar una del comboBox.
+                if (color == ColorParte.ROJO && !tipoSancion.equals("Otra")) {
+                    sancion = tipoSancionCBox.getSelectionModel().getSelectedItem();
+                }
+
+                Parte newParte = new Parte(
                         alumno,
                         GestionPartesService.getProfesor(),
                         descripcion,
@@ -202,10 +246,20 @@ public class CrearPartesCtrl implements Initializable {
                         tiposParteMap.get(color)
                 );
 
-                if (parteDAO.crear(parte)) {
-                    AlertShow.info("Parte creado correctamente.");
-                } else {
-                    AlertShow.error("No se pudo crear el parte.");
+                if (oldParte == null) { // Contexto de crear parte
+                    if (parteDAO.crear(newParte)) {
+                        AlertShow.info("Parte creado correctamente.");
+                    } else {
+                        AlertShow.error("No se pudo crear el parte.");
+                    }
+                } else { // Contexto de modificar parte
+                    newParte.setId(oldParte.getId());
+                    if (parteDAO.editar(newParte)) {
+                        SceneManager.closeScene("crear_parte-view.fxml");
+                        AlertShow.info("Parte modificado correctamente.");
+                    } else {
+                        AlertShow.error("Error al modificar el parte.");
+                    }
                 }
 
             }
