@@ -133,7 +133,7 @@ public class ListaPartesCtrl implements Initializable {
         if (parte == null) {
             AlertShow.warning("Selecciona un parte.");
         } else {
-            SceneManager.changeScene(event, "crear_parte-view.fxml", parte);
+            SceneManager.showNewScene("crear_parte-view.fxml", parte);
         }
     }
 

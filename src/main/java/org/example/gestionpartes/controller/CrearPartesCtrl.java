@@ -5,12 +5,14 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 import org.example.gestionpartes.DAO.*;
 import org.example.gestionpartes.model.*;
 import org.example.gestionpartes.service.GestionPartesService;
 import org.example.gestionpartes.util.AlertShow;
+import org.example.gestionpartes.util.SceneManager;
 import org.example.gestionpartes.util.Validator;
 
 import java.net.URL;
@@ -19,6 +21,9 @@ import java.time.LocalTime;
 import java.util.*;
 
 public class CrearPartesCtrl implements Initializable, LoadAbleData<Parte> {
+    @FXML
+    public HBox menuInclude;
+
     @FXML
     private VBox vBox;
 
@@ -108,6 +113,7 @@ public class CrearPartesCtrl implements Initializable, LoadAbleData<Parte> {
 
     @Override
     public void loadData(Parte parte) {
+        vBox.getChildren().remove(menuInclude);
         guardarBttn.setText("Editar");
         oldParte = parte;
         switch (parte.getTipo().getColor()) {
@@ -249,6 +255,7 @@ public class CrearPartesCtrl implements Initializable, LoadAbleData<Parte> {
                 } else { // Contexto de modificar parte
                     newParte.setId(oldParte.getId());
                     if (parteDAO.editar(newParte)) {
+                        SceneManager.closeScene("crear_parte-view.fxml");
                         AlertShow.info("Parte modificado correctamente.");
                     } else {
                         AlertShow.error("Error al modificar el parte.");
