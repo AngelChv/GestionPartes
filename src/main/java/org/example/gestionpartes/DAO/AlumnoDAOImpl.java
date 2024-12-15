@@ -19,9 +19,10 @@ public class AlumnoDAOImpl implements AlumnoDAO {
         }
     }
 
+    @Override
     public Alumno findByNumExp(int numExp) {
         try (Session session = HibernateUtil.getSession()) {
-            String hql = "from Alumno where Alumno.numExpediente = :numExp";
+            String hql = "from Alumno where numExpediente = :numExp";
             Query<Alumno> query = session.createQuery(hql, Alumno.class);
             query.setParameter("numExp", numExp);
             return query.uniqueResult();

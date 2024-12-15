@@ -43,7 +43,7 @@ public class LoginCtrl {
                 AlertShow.warning("Usuario o contraseña incorrectos");
             } else { // Login correcto.
                 GestionPartesService.setProfesor(profesor);
-                SceneManager.changeScene(event, "menu-view.fxml");
+                SceneManager.changeScene(event, "crear_parte-view.fxml");
             }
         }
     }
