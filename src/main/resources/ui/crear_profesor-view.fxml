@@ -5,30 +5,32 @@
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-
-<VBox alignment="TOP_CENTER" spacing="4.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.gestionpartes.controller.CrearProfesorCtrl">
+<VBox alignment="TOP_CENTER" maxHeight="600.0" maxWidth="800.0" spacing="16.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.gestionpartes.controller.CrearProfesorCtrl">
    <children>
        <fx:include source="menu-view.fxml" />
-      <Label text="CREAR PROFESOR">
+      <Separator prefWidth="200.0" />
+      <Label text="Crear Profesor">
          <font>
-            <Font size="18.0" />
+            <Font name="System Bold" size="18.0" />
          </font>
          <VBox.margin>
             <Insets top="5.0" />
          </VBox.margin>
       </Label>
-      <Line endX="100.0" startX="-100.0" />
       <Label text="Nombre">
          <VBox.margin>
             <Insets top="5.0" />
          </VBox.margin>
+         <font>
+            <Font size="14.0" />
+         </font>
       </Label>
-      <TextField fx:id="txtNombre">
+      <TextField fx:id="txtNombre" maxWidth="200.0">
          <VBox.margin>
             <Insets top="5.0" />
          </VBox.margin>
@@ -37,8 +39,11 @@
          <VBox.margin>
             <Insets top="5.0" />
          </VBox.margin>
+         <font>
+            <Font size="14.0" />
+         </font>
       </Label>
-      <TextField fx:id="txtNumAsig">
+      <TextField fx:id="txtNumAsig" maxWidth="200.0">
          <VBox.margin>
             <Insets top="5.0" />
          </VBox.margin>
@@ -47,8 +52,11 @@
          <VBox.margin>
             <Insets top="5.0" />
          </VBox.margin>
+         <font>
+            <Font size="14.0" />
+         </font>
       </Label>
-      <PasswordField fx:id="txtPassword">
+      <PasswordField fx:id="txtPassword" maxWidth="200.0">
          <VBox.margin>
             <Insets top="5.0" />
          </VBox.margin>
@@ -57,6 +65,9 @@
          <VBox.margin>
             <Insets top="5.0" />
          </VBox.margin>
+         <font>
+            <Font size="14.0" />
+         </font>
       </Label>
       <ComboBox fx:id="cbTipo" prefWidth="150.0">
          <VBox.margin>

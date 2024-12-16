@@ -10,17 +10,21 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
 <VBox fx:id="vBox" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" spacing="16.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.gestionpartes.controller.CrearPartesCtrl">
     <children>
         <fx:include fx:id="menuInclude" source="menu-view.fxml" VBox.vgrow="NEVER" />
         <Separator />
-        <Label fx:id="titleLabel" text="Crear parte" />
+        <Label fx:id="titleLabel" text="Crear parte">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font></Label>
         <HBox alignment="CENTER" spacing="16.0">
             <children>
-                <Button mnemonicParsing="false" onAction="#onVerdeClick" text="Parte verde" />
-                <Button mnemonicParsing="false" onAction="#onNaranjaClick" text="Parte naranja" />
-                <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#onRojoClick" text="Parte rojo" />
+                <Button focusTraversable="false" mnemonicParsing="false" onAction="#onVerdeClick" text="Parte verde" />
+                <Button focusTraversable="false" mnemonicParsing="false" onAction="#onNaranjaClick" text="Parte naranja" />
+                <Button alignment="CENTER" contentDisplay="CENTER" focusTraversable="false" mnemonicParsing="false" onAction="#onRojoClick" text="Parte rojo" />
             </children>
         </HBox>
         <Separator />
@@ -31,21 +35,36 @@
             <VBox.margin>
                 <Insets />
             </VBox.margin>
+         <font>
+            <Font size="14.0" />
+         </font>
         </Label>
         <DatePicker fx:id="datePick" promptText="Fecha" />
         <Label contentDisplay="RIGHT" text="Hora: ">
             <graphic>
                 <ComboBox fx:id="horaComboBox" prefWidth="150.0" />
             </graphic>
+         <font>
+            <Font size="14.0" />
+         </font>
         </Label>
         <Label contentDisplay="RIGHT" text="Minuto: ">
             <graphic>
                 <ComboBox fx:id="minutoComboBox" prefWidth="150.0" />
             </graphic>
+         <font>
+            <Font size="14.0" />
+         </font>
         </Label>
-        <Label alignment="TOP_LEFT" contentDisplay="BOTTOM" text="Descripción de los hechos:" />
+        <Label alignment="TOP_LEFT" contentDisplay="BOTTOM" text="Descripción de los hechos:">
+         <font>
+            <Font size="14.0" />
+         </font></Label>
         <TextArea fx:id="descripcionTxt" prefHeight="100.0" VBox.vgrow="ALWAYS" />
-        <Label fx:id="sancionLabel" alignment="TOP_LEFT" contentDisplay="BOTTOM" text="La sanción que recibes: " />
+        <Label fx:id="sancionLabel" alignment="TOP_LEFT" contentDisplay="BOTTOM" text="La sanción que recibes: ">
+         <font>
+            <Font size="14.0" />
+         </font></Label>
         <TextArea fx:id="sancionTxt" prefHeight="100.0" promptText="Escribe la sanción personalizada" VBox.vgrow="ALWAYS" />
         <Button fx:id="guardarBttn" mnemonicParsing="false" onAction="#onSaveClick" text="Guardar" />
     </children>
