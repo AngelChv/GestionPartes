@@ -20,7 +20,7 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.*;
 
-public class CrearPartesCtrl implements Initializable, LoadAbleData<Parte> {
+public class CrearPartesCtrl implements Initializable, LoadAbleData<TableView<Parte>> {
     @FXML
     public HBox menuInclude;
 
@@ -65,6 +65,7 @@ public class CrearPartesCtrl implements Initializable, LoadAbleData<Parte> {
     private static final Map<ColorParte, TipoParte> tiposParteMap = new HashMap<>();
 
     private Parte oldParte = null;
+    private TableView<Parte> table;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -112,34 +113,33 @@ public class CrearPartesCtrl implements Initializable, LoadAbleData<Parte> {
     }
 
     @Override
-    public void loadData(Parte parte) {
+    public void loadData(TableView<Parte> table) {
         vBox.getChildren().remove(menuInclude);
         guardarBttn.setText("Editar");
-        oldParte = parte;
-        switch (parte.getTipo().getColor()) {
-            case VERDE -> sancionTxt.setText(parte.getSancion());
+        this.table = table;
+        oldParte = table.getSelectionModel().getSelectedItem();
+        switch (oldParte.getTipo().getColor()) {
+            case VERDE -> sancionTxt.setText(oldParte.getSancion());
             case NARANJA -> {
                 onNaranjaClick();
-                sancionTxt.setText(parte.getSancion());
+                sancionTxt.setText(oldParte.getSancion());
             }
             case ROJO -> {
                 onRojoClick();
-                System.out.println(parte.getSancion());
-                System.out.println(tipoSancionCBox.getItems().contains(parte.getSancion()));
-                if (tipoSancionCBox.getItems().contains(parte.getSancion())) {
-                    tipoSancionCBox.setValue(parte.getSancion());
+                if (tipoSancionCBox.getItems().contains(oldParte.getSancion())) {
+                    tipoSancionCBox.setValue(oldParte.getSancion());
                 } else {
                     tipoSancionCBox.setValue("Otra");
-                    sancionTxt.setText(parte.getSancion());
+                    sancionTxt.setText(oldParte.getSancion());
                 }
             }
         }
 
-        numexpedienteTxt.setText(String.valueOf(parte.getAlumno().getNumExpediente()));
-        datePick.setValue(parte.getFecha());
-        horaComboBox.setValue(String.format("%02d", parte.getHora().getHour()));
-        minutoComboBox.setValue(String.format("%02d", parte.getHora().getMinute()));
-        descripcionTxt.setText(parte.getDescripcion());
+        numexpedienteTxt.setText(String.valueOf(oldParte.getAlumno().getNumExpediente()));
+        datePick.setValue(oldParte.getFecha());
+        horaComboBox.setValue(String.format("%02d", oldParte.getHora().getHour()));
+        minutoComboBox.setValue(String.format("%02d", oldParte.getHora().getMinute()));
+        descripcionTxt.setText(oldParte.getDescripcion());
     }
 
     @FXML
@@ -193,11 +193,6 @@ public class CrearPartesCtrl implements Initializable, LoadAbleData<Parte> {
             VBox.setVgrow(sancionTxt, Priority.ALWAYS);
         }
     }
-
-    private void addSancion() {
-
-    }
-
 
     @FXML
     void onSaveClick(ActionEvent event) {
@@ -253,9 +248,16 @@ public class CrearPartesCtrl implements Initializable, LoadAbleData<Parte> {
                         AlertShow.error("No se pudo crear el parte.");
                     }
                 } else { // Contexto de modificar parte
-                    newParte.setId(oldParte.getId());
-                    if (parteDAO.editar(newParte)) {
+                    oldParte.setAlumno(newParte.getAlumno());
+                    oldParte.setProfesor(newParte.getProfesor());
+                    oldParte.setDescripcion(newParte.getDescripcion());
+                    oldParte.setFecha(newParte.getFecha());
+                    oldParte.setHora(newParte.getHora());
+                    oldParte.setSancion(newParte.getSancion());
+                    oldParte.setTipo(newParte.getTipo());
+                    if (parteDAO.editar(oldParte)) {
                         SceneManager.closeScene("crear_parte-view.fxml");
+                        table.refresh();
                         AlertShow.info("Parte modificado correctamente.");
                     } else {
                         AlertShow.error("Error al modificar el parte.");

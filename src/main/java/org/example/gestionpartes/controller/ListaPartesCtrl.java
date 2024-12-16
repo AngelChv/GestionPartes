@@ -128,12 +128,10 @@ public class ListaPartesCtrl implements Initializable {
 
     @FXML
     void onEditClick(ActionEvent event) {
-        Parte parte = partesTbl.getSelectionModel().getSelectedItem();
-
-        if (parte == null) {
+        if (partesTbl.getSelectionModel().getSelectedItem() == null) {
             AlertShow.warning("Selecciona un parte.");
         } else {
-            SceneManager.showNewScene("crear_parte-view.fxml", parte);
+            SceneManager.showNewScene("crear_parte-view.fxml", partesTbl);
         }
     }
 
