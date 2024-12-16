@@ -51,17 +51,20 @@ public class CrearProfesorCtrl implements Initializable {
             if (!nombre.isEmpty() && !password.isEmpty() && tipo != null) {
                 String passwordEncriptada = DigestUtils.sha256Hex(password);
                 Profesor p = new Profesor(passwordEncriptada,nombre,numAsig,tipo);
-                if (profesorDAO.crearProfesor(p)){
-                    AlertShow.info("Profesor creada correctamente.");
+                if(profesorDAO.getProfesor(numAsig)!=null) {
+                    AlertShow.info("El profesor ya existe.");
                 }else {
-                    AlertShow.error("Error al crear el profesor");
+                    if (profesorDAO.crearProfesor(p)){
+                        AlertShow.info("Profesor creada correctamente.");
+                    }else {
+                        AlertShow.error("Error al crear el profesor");
+                    }
                 }
             }else {
                 AlertShow.info("Rellene todos los campos");
             }
         }
     }//clickCrear
-
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         List<TipoProfesor> tipoProfesores = new ArrayList<>();
