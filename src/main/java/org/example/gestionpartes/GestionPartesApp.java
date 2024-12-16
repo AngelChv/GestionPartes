@@ -20,7 +20,7 @@ public class GestionPartesApp extends Application {
         // Aplicar estilos.
         GestionPartesService.setCss(R.getUrl("style/light-theme.css").toExternalForm());
         scene.getStylesheets().add(GestionPartesService.getCss());
-        stage.getIcons().add(new Image(getClass().getResourceAsStream("/images/LOGO_TRANSPARENTE_COLOR_GRANDE_b.png"))); //icono de la aplicación
+        stage.getIcons().add(new Image(R.getInputStream("images/LOGO_TRANSPARENTE_COLOR_GRANDE_b.png"))); //icono de la aplicación
         stage.setScene(scene);
         stage.show();
     }

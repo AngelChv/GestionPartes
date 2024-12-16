@@ -60,39 +60,8 @@
     -fx-font-weight: bold;
 }
 
-/* Estilos para las filas en la tabla basados en el estado */
-.table-row-cell-verde {
-    -fx-background-color: #C8E6C9; /* Verde suave */
-    -fx-text-fill: #212121; /* Texto oscuro para buen contraste */
-}
-
-.table-row-cell-naranja {
-    -fx-background-color: #FFE0B2; /* Naranja suave */
-    -fx-text-fill: #212121; /* Texto oscuro para buen contraste */
-}
-
-.table-row-cell-rojo {
-    -fx-background-color: #FFCDD2; /* Rojo suave */
-    -fx-text-fill: #212121; /* Texto oscuro para buen contraste */
-}
-
 /* Ajustar el color de selección y hover para mayor visibilidad */
 .table-row-cell:selected {
-    -fx-background-color: #007bff; /* Azul */
-    -fx-text-fill: white;
-}
-
-.table-row-cell-verde:selected {
-    -fx-background-color: #388E3C; /* Verde más intenso */
-    -fx-text-fill: white;
-}
-
-.table-row-cell-naranja:selected {
-    -fx-background-color: #FB8C00; /* Naranja más intenso */
-    -fx-text-fill: white;
-}
-
-.table-row-cell-rojo:selected {
-    -fx-background-color: #D32F2F; /* Rojo más intenso */
-    -fx-text-fill: white;
+    -fx-text-fill: black;
+    -fx-font-weight: bold;
 }

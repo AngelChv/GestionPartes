@@ -13,6 +13,7 @@ module org.example.gestionpartes {
     opens ui;
     opens configuration;
     opens style;
+    opens images;
 
     opens org.example.gestionpartes.model;
     exports org.example.gestionpartes.model;
