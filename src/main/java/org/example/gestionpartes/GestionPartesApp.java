@@ -3,6 +3,7 @@ package org.example.gestionpartes;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import org.example.gestionpartes.service.GestionPartesService;
 import org.example.gestionpartes.util.HibernateUtil;
@@ -19,6 +20,7 @@ public class GestionPartesApp extends Application {
         // Aplicar estilos.
         GestionPartesService.setCss(R.getUrl("style/light-theme.css").toExternalForm());
         scene.getStylesheets().add(GestionPartesService.getCss());
+        stage.getIcons().add(new Image(getClass().getResourceAsStream("/images/LOGO_TRANSPARENTE_COLOR_GRANDE_b.png"))); //icono de la aplicación
         stage.setScene(scene);
         stage.show();
     }
