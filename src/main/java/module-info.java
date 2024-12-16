@@ -12,12 +12,13 @@ module org.example.gestionpartes {
 
     opens ui;
     opens configuration;
+    opens style;
 
     opens org.example.gestionpartes.model;
     exports org.example.gestionpartes.model;
 
-    opens org.example.gestionpartes to javafx.fxml;
+    opens org.example.gestionpartes;
     exports org.example.gestionpartes;
     exports org.example.gestionpartes.controller;
-    opens org.example.gestionpartes.controller to javafx.fxml;
+    opens org.example.gestionpartes.controller;
 }
