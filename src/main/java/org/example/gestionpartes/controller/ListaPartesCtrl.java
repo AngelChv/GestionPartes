@@ -11,6 +11,8 @@ import javafx.scene.input.KeyEvent;
 import org.example.gestionpartes.DAO.ParteDAOImpl;
 import org.example.gestionpartes.model.ColorParte;
 import org.example.gestionpartes.model.Parte;
+import org.example.gestionpartes.util.AlertShow;
+import org.example.gestionpartes.util.SceneManager;
 
 import java.net.URL;
 import java.time.LocalDate;
@@ -109,31 +111,28 @@ public class ListaPartesCtrl implements Initializable {
 
     @FXML
     void onStartDateClick(ActionEvent event) {
-        dateFilter();
+        stringFilter(true);
+        dateFilter(false);
     }
 
     @FXML
     void onEndDateClick(ActionEvent event) {
-        dateFilter();
+        dateFilter(true);
     }
 
     @FXML
     void onSearchType(KeyEvent event) {
-        String searchText = filterTxt.getText().toLowerCase();
+        dateFilter(true);
+        stringFilter(false);
+    }
 
-        // Filtrar los partes originales según el texto de búsqueda
-        List<Parte> partesFiltrados = partes.stream().filter(parte -> (
-                parte.getAlumno().getNombre().toLowerCase().contains(searchText) ||
-                        parte.getAlumno().getGrupo().getNombre().toLowerCase().contains(searchText) ||
-                        parte.getProfesor().getNombre().toLowerCase().contains(searchText) ||
-                        parte.getTipo().getColor().toString().toLowerCase().contains(searchText) ||
-                        String.valueOf(parte.getAlumno().getNumExpediente()).contains(searchText)
-        )).toList();
-
-        partesObsL.setAll(partesFiltrados);
-
-        // Actualizar la paginación para reflejar el número de elementos filtrados
-        initializePagination();
+    @FXML
+    void onEditClick(ActionEvent event) {
+        if (partesTbl.getSelectionModel().getSelectedItem() == null) {
+            AlertShow.warning("Selecciona un parte.");
+        } else {
+            SceneManager.showNewScene("crear_parte-view.fxml", partesTbl);
+        }
     }
 
     private void initializePagination() {
@@ -153,13 +152,17 @@ public class ListaPartesCtrl implements Initializable {
         });
     }
 
-    private void dateFilter() {
+    private void dateFilter(boolean clearFilters) {
         LocalDate startDate = startDatePick.getValue();
         LocalDate endDate = endDatePick.getValue();
 
         if (startDate != null && endDate != null) {
+            List<Parte> list;
+            if (clearFilters) list = partes;
+            else list = partesObsL;
+
             // Filtrar los partes originales según las fechas introducidas.
-            List<Parte> partesFiltrados = partes.stream().filter(parte -> (
+            List<Parte> partesFiltrados = list.stream().filter(parte -> (
                     parte.getFecha().isAfter(startDatePick.getValue()) &&
                             parte.getFecha().isBefore(endDatePick.getValue())
             )).toList();
@@ -169,5 +172,27 @@ public class ListaPartesCtrl implements Initializable {
             // Actualizar la paginación para reflejar el número de elementos filtrados
             initializePagination();
         }
+    }
+
+    private void stringFilter(boolean clearFilters) {
+        String searchText = filterTxt.getText().toLowerCase();
+
+        List<Parte> list;
+        if (clearFilters) list = partes;
+        else list = partesObsL;
+
+        // Filtrar los partes originales según el texto de búsqueda
+        List<Parte> partesFiltrados = list.stream().filter(parte -> (
+                parte.getAlumno().getNombre().toLowerCase().contains(searchText) ||
+                        parte.getAlumno().getGrupo().getNombre().toLowerCase().contains(searchText) ||
+                        parte.getProfesor().getNombre().toLowerCase().contains(searchText) ||
+                        parte.getTipo().getColor().toString().toLowerCase().contains(searchText) ||
+                        String.valueOf(parte.getAlumno().getNumExpediente()).contains(searchText)
+        )).toList();
+
+        partesObsL.setAll(partesFiltrados);
+
+        // Actualizar la paginación para reflejar el número de elementos filtrados
+        initializePagination();
     }
 }

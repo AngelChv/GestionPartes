@@ -3,6 +3,7 @@ package org.example.gestionpartes;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import org.example.gestionpartes.util.HibernateUtil;
 import org.example.gestionpartes.util.R;
@@ -15,6 +16,7 @@ public class GestionPartesApp extends Application {
         FXMLLoader fxmlLoader = new FXMLLoader(R.getUI("login-view.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
         stage.setTitle("Gestión de Partes");
+        stage.getIcons().add(new Image(getClass().getResourceAsStream("/images/LOGO_TRANSPARENTE_COLOR_GRANDE_b.png"))); //icono de la aplicación
         stage.setScene(scene);
         stage.show();
     }

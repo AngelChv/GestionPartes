@@ -17,4 +17,31 @@ public class ParteDAOImpl implements ParteDAO {
             return null;
         }
     }
+
+    @Override
+    public Boolean crear(Parte parte) {
+        boolean creado = true;
+        try (Session session = HibernateUtil.getSession()) {
+            session.beginTransaction();
+            session.persist(parte);
+            session.getTransaction().commit();
+        }catch (HibernateException he) {
+            creado = false;
+        }
+        return creado;
+    }
+
+    @Override
+    public Boolean editar(Parte parte) {
+        try (Session session = HibernateUtil.getSession()) {
+            session.beginTransaction();
+            session.merge(parte);
+            session.getTransaction().commit();
+        }catch (HibernateException he) {
+            return false;
+        }
+        return true;
+    }
+
+
 }
