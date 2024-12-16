@@ -62,11 +62,11 @@ public class ListaAlumnosCtrl implements Initializable {
                     setStyle(""); // Si la fila está vacía no se aplica estilo.
                 } else {
                     if (alumno.getPuntos() > 0 && alumno.getPuntos() <= 5) {
-                        setStyle("-fx-background-color: #9af69f;");
+                        setStyle("-fx-background-color: #4caf50;");
                     } else if (alumno.getPuntos() >= 6 && alumno.getPuntos() <= 11) {
-                        setStyle("-fx-background-color: #faac46;");
+                        setStyle("-fx-background-color: #ff9800;");
                     } else if (alumno.getPuntos() >= 12) {
-                        setStyle("-fx-background-color: #d06f6f;");
+                        setStyle("-fx-background-color: #f44336;");
                     } else {
                         setStyle("-fx-background-color: #ffffff;");
                     }
