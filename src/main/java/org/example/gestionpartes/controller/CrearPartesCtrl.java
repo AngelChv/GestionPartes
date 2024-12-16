@@ -145,7 +145,7 @@ public class CrearPartesCtrl implements Initializable, LoadAbleData<TableView<Pa
     @FXML
     void onRojoClick() {
         // Cambiar color de fondo
-        vBox.setStyle("-fx-background-color: #d06f6f;");
+        vBox.setStyle("-fx-background-color: #ff8d98;");
         titleLabel.setText("Parte rojo de nota negativa");
         color = ColorParte.ROJO;
 
@@ -161,7 +161,7 @@ public class CrearPartesCtrl implements Initializable, LoadAbleData<TableView<Pa
     @FXML
     void onNaranjaClick() {
         // Cambiar color de fondo
-        vBox.setStyle("-fx-background-color: #faac46;");
+        vBox.setStyle("-fx-background-color: #ffc684;");
         titleLabel.setText("Parte naranja de nota negativa");
         color = ColorParte.NARANJA;
 
@@ -171,7 +171,7 @@ public class CrearPartesCtrl implements Initializable, LoadAbleData<TableView<Pa
     @FXML
     void onVerdeClick() {
         // Cambiar color de fondo
-        vBox.setStyle("-fx-background-color: #9af69f;");
+        vBox.setStyle("-fx-background-color: #a8f6aa;");
         titleLabel.setText("Parte verde de advertencia");
         color = ColorParte.VERDE;
 

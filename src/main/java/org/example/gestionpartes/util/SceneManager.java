@@ -8,6 +8,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import org.example.gestionpartes.service.GestionPartesService;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -148,7 +149,7 @@ SceneManager {
 
     private static void loadCss(Scene scene) {
         // Aplicar estilos a la escena:
-        /*String css = GestionPartesService.getCss();
-        if (css != null) scene.getStylesheets().add(css);*/
+        String css = GestionPartesService.getCss();
+        if (css != null) scene.getStylesheets().add(css);
     }
 }

@@ -87,9 +87,9 @@ public class ListaPartesCtrl implements Initializable {
                     setStyle(""); // Si la fila está vacía no se aplica estilo.
                 } else {
                     switch (parte.getTipo().getColor()) {
-                        case ColorParte.VERDE -> setStyle("-fx-background-color: #9af69f;");
-                        case ColorParte.NARANJA -> setStyle("-fx-background-color: #faac46;");
-                        case ColorParte.ROJO -> setStyle("-fx-background-color: #d06f6f;");
+                        case ColorParte.VERDE -> setStyle("-fx-background-color: #4caf50;");
+                        case ColorParte.NARANJA -> setStyle("-fx-background-color: #ff9800;");
+                        case ColorParte.ROJO -> setStyle("-fx-background-color: #f44336;");
                         default -> setStyle("");
                     }
                 }

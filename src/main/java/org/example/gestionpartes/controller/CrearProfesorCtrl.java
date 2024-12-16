@@ -52,7 +52,7 @@ public class CrearProfesorCtrl implements Initializable {
                 String passwordEncriptada = DigestUtils.sha256Hex(password);
                 Profesor p = new Profesor(passwordEncriptada,nombre,numAsig,tipo);
                 if (profesorDAO.crearProfesor(p)){
-                    AlertShow.info("Profesor creada correctamente.");
+                    AlertShow.info("Profesor creado correctamente.");
                 }else {
                     AlertShow.error("Error al crear el profesor");
                 }
@@ -68,6 +68,5 @@ public class CrearProfesorCtrl implements Initializable {
         tipoProfesores.add(TipoProfesor.PROFESOR);
         tipoProfesores.add(TipoProfesor.JEFE_DE_ESTUDIOS);
         cbTipo.getItems().addAll(tipoProfesores);
-
     }
 }

@@ -1,0 +1,67 @@
+/* Estilo base para el modo claro */
+.root {
+    -fx-background-color: #ffffff;
+    -fx-text-fill: #212121; /* Color de texto oscuro */
+}
+
+/* Estilo para los botones */
+.button {
+    -fx-background-color: #007bff; /* Azul */
+    -fx-text-fill: #ffffff; /* Texto blanco */
+    -fx-background-radius: 4;
+    -fx-border-radius: 4;
+    -fx-border-color: #0056b3; /* Azul más oscuro */
+    -fx-padding: 8 16;
+}
+
+.button:hover {
+    -fx-background-color: #0056b3;
+}
+
+.button:pressed {
+    -fx-background-color: #03dac6;
+}
+
+/* Botones para verde, naranja y rojo */
+.button-verde {
+    -fx-background-color: #388E3C; /* Verde más intenso */
+    -fx-text-fill: #ffffff; /* Texto blanco */
+}
+
+.button-naranja {
+    -fx-background-color: #FB8C00; /* Naranja */
+    -fx-text-fill: #ffffff; /* Texto blanco */
+}
+
+.button-rojo {
+    -fx-background-color: #D32F2F; /* Rojo */
+    -fx-text-fill: #ffffff; /* Texto blanco */
+}
+
+/* Estilo para las tablas */
+.table-view {
+    -fx-background-color: #ffffff;
+    -fx-control-inner-background: #ffffff;
+    -fx-border-color: #bdbdbd;
+    -fx-table-cell-border-color: transparent;
+    -fx-cell-size: 30px;
+    -fx-text-fill: #212121;
+}
+
+.table-view .column-header-background {
+    -fx-background-color: #f5f5f5;
+}
+
+.table-view .column-header, .table-view .filler {
+    -fx-background-color: #f5f5f5;
+    -fx-border-color: #bdbdbd;
+    -fx-text-fill: #212121;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+}
+
+/* Ajustar el color de selección y hover para mayor visibilidad */
+.table-row-cell:selected {
+    -fx-text-fill: black;
+    -fx-font-weight: bold;
+}
