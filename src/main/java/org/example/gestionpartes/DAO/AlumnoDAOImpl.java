@@ -4,6 +4,7 @@ import org.example.gestionpartes.model.Alumno;
 import org.example.gestionpartes.util.HibernateUtil;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
+import org.hibernate.query.Query;
 
 import java.util.List;
 
@@ -18,17 +19,13 @@ public class AlumnoDAOImpl implements AlumnoDAO {
         }
     }
 
-    public List<Alumno> findByString(String pattern) {
+    @Override
+    public Alumno findByNumExp(int numExp) {
         try (Session session = HibernateUtil.getSession()) {
-            String hql = "from Alumno " +
-                    "where nombre like :pattern or " +
-                    "grupo.nombre like :pattern or " +
-                    "cast(numExpediente as String) like :pattern or " +
-                    "cast(puntos as string) like :pattern";
-
-            return session.createQuery(hql, Alumno.class)
-                    .setParameter("pattern", "%" + pattern + "%")
-                    .list();
+            String hql = "from Alumno where numExpediente = :numExp";
+            Query<Alumno> query = session.createQuery(hql, Alumno.class);
+            query.setParameter("numExp", numExp);
+            return query.uniqueResult();
         } catch (HibernateException he) {
             return null;
         }
